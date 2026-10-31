@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Математика</title>
+<title>TeoSchool — математика для 7–8 классов</title>
+<meta name="description" content="TeoSchool: основа сайта с примерами учебных материалов по математике для 7–8 классов.">
 <style>
 :root{
   --bg:#f5f6fa;--card:#fff;--text:#1d2433;--muted:#6b7385;--accent:#3b6cf6;--accent-soft:#e6ecff;
@@ -21,6 +22,8 @@ header button[hidden]{display:none}
 header h1{font-size:18px;margin:0;flex:1}
 main{max-width:720px;margin:0 auto;padding:16px}
 .grid{display:grid;gap:12px}
+.doc + .grid{margin-top:16px}
+button:focus-visible, summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;text-align:left;font:inherit;color:inherit;cursor:pointer;width:100%}
 .tile:active{transform:scale(.99)}
 .tile b{display:block;font-size:19px;margin-bottom:2px}
@@ -57,7 +60,7 @@ summary{cursor:pointer;color:var(--accent)}
 <body>
 <header>
   <button id="back" hidden aria-label="Назад">←</button>
-  <h1 id="title">Математика</h1>
+  <h1 id="title">TeoSchool</h1>
 </header>
 <main id="app"></main>
 
@@ -174,7 +177,10 @@ function render(){
 }
 
 function home(){
-  titleEl.textContent = 'Математика';
+  titleEl.textContent = 'TeoSchool';
+  const intro = el('section', 'doc');
+  intro.innerHTML = '<h2>Математика для 7–8 классов</h2><p>Алгебра, геометрия, вероятность и статистика.</p><p>Это основа сайта TeoSchool. Ниже сохранены примеры учебных материалов; содержание разделов ещё предстоит подготовить.</p>';
+  app.appendChild(intro);
   const g = el('div','grid');
   Object.keys(DATA).forEach(k=>{
     const c = DATA[k];
@@ -214,7 +220,7 @@ function subjectScreen(s){
 
   const items = sub[s.tab] || [];
   if (!items.length){
-    app.appendChild(Object.assign(el('div','empty'),{textContent:'Здесь пока пусто. Скоро появятся материалы.'}));
+    app.appendChild(Object.assign(el('div','empty'),{textContent:'В этом разделе пока нет материалов.'}));
     return;
   }
   const list = el('div','list');
